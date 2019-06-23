@@ -150,7 +150,7 @@ func handleMicroConnection(ind int) {
 									_, _ = nCh[ind].conn.Write(nCh[ind].bufS[:len(nCh[ind].bufS)-1])
 
 								} else {
-									rstr = createPacket("404 Not Found", "text/html; charset=utf-8", "")
+									rstr = createPacket("404 Not Found", "text/html; charset=utf-8", "not found")
 									nCh[ind].bufS = []byte(rstr)
 									_, _ = nCh[ind].conn.Write(nCh[ind].bufS[:len(nCh[ind].bufS)-1])
 
@@ -158,7 +158,7 @@ func handleMicroConnection(ind int) {
 
 							} else {
 								log.Println("invalid guid", nCh[ind].uparams[2])
-								nCh[ind].mstr = createPacket("400 Bad Request", "application/json", "bye")
+								nCh[ind].mstr = createPacket("400 Bad Request", "application/json", "invalid guid")
 								nCh[ind].bufS = []byte(nCh[ind].mstr)
 								_, _ = nCh[ind].conn.Write(nCh[ind].bufS[:len(nCh[ind].bufS)-1])
 							}
